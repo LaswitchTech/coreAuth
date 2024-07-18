@@ -248,7 +248,7 @@ if(isset($_POST) && !empty($_POST)){
                           <table class="table border table-striped table-hover">
                             <thead>
                               <tr class="text-bg-light">
-                                <th class="border" colspan="<?= count($Columns) ?>"><?= ucfirst($Table) ?></th>
+                                <th class="border" colspan="<?= count($Columns) +1 ?>"><?= ucfirst($Table) ?></th>
                               </tr>
                               <tr class="text-bg-light">
                                 <?php foreach($Columns as $Column => $DataType){ ?>
