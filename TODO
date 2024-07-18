@@ -27,11 +27,11 @@
     - [X] Dump autoload `composer dump-autoload`
     - [X] Update requirements in `config/requirements.cfg`
     - [X] Remove any credentials in the project
-    - [] Perform initial push to GitHub
-    - [] Create `stable` branch from `dev` branch on GitHub
-    - [] Set `stable` branch as default branch on GitHub
-    - [] Create a package on Packagist
-    - [] Create a release on GitHub
+    - [X] Perform initial push to GitHub
+    - [X] Create `stable` branch from `dev` branch on GitHub
+    - [X] Set `stable` branch as default branch on GitHub
+    - [X] Create a package on Packagist
+    - [X] Create a release on GitHub
 - [X] Create the core class
     - [X] Create the `Core` class
     - [X] Create the `Core` class methods
