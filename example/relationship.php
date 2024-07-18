@@ -263,7 +263,7 @@ if(isset($_POST) && !empty($_POST)){
                                   <?php foreach($Record as $Column => $Value){ ?>
                                     <td class="border"><?= $Value ?></td>
                                   <?php } ?>
-                                  <td class="border position-sticky end-0 text-bg-light">
+                                  <td class="border position-sticky end-0">
                                     <input type="hidden" class="d-none" name="csrf" value="<?= $CSRF->token() ?>">
                                     <div class="btn-group border shadow">
                                       <a href="relationship.php?type=<?= $RecordTypes[$Table] ?>&id=<?= $Record[$Identifiers[$RecordTypes[$Table]]] ?>" class="btn btn-sm btn-primary">Details</a>

@@ -131,7 +131,7 @@ $Header = ucfirst($Page);
                                   <?php } ?>
                                 </td>
                               <?php } ?>
-                              <td class="border position-sticky end-0 text-bg-light">
+                              <td class="border position-sticky end-0">
                                 <div class="btn-group border shadow">
                                   <a href="detail.php?type=<?= $Page ?>&id=<?= $Object->get($Identifiers[$Page]); ?>" class="btn btn-sm btn-primary">Details</a>
                                   <?php if($Page !== "permission"){ ?>
