@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dd9fb580c67026f801ba5e43a0bfa87e",
+    "content-hash": "2ed32d8e65c4f4be23d18f21f8e950a7",
     "packages": [
         {
             "name": "laswitchtech/core-configurator",
@@ -142,6 +142,52 @@
             "time": "2024-06-27T00:06:59+00:00"
         },
         {
+            "name": "laswitchtech/core-imap",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaswitchTech/coreIMAP.git",
+                "reference": "f28937648ea635e812a8b61842a0b89d5f11ea02"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LaswitchTech/coreIMAP/zipball/f28937648ea635e812a8b61842a0b89d5f11ea02",
+                "reference": "f28937648ea635e812a8b61842a0b89d5f11ea02",
+                "shasum": ""
+            },
+            "require": {
+                "laswitchtech/core-net": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LaswitchTech\\coreIMAP\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Louis Ouellet",
+                    "email": "louis_ouellet@hotmail.com"
+                }
+            ],
+            "description": "IMAP Library for the Laswitch Core Framework",
+            "support": {
+                "issues": "https://github.com/LaswitchTech/coreIMAP/issues",
+                "source": "https://github.com/LaswitchTech/coreIMAP/tree/v1.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/LaswitchTech",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-06-27T00:03:48+00:00"
+        },
+        {
             "name": "laswitchtech/core-logger",
             "version": "v1.0.3",
             "source": {
@@ -232,6 +278,98 @@
                 }
             ],
             "time": "2024-06-26T23:59:49+00:00"
+        },
+        {
+            "name": "laswitchtech/core-sms",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaswitchTech/coreSMS.git",
+                "reference": "f50ac84fff5921e65fc911536d001e52ab377291"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LaswitchTech/coreSMS/zipball/f50ac84fff5921e65fc911536d001e52ab377291",
+                "reference": "f50ac84fff5921e65fc911536d001e52ab377291",
+                "shasum": ""
+            },
+            "require": {
+                "laswitchtech/core-logger": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LaswitchTech\\coreSMS\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Louis Ouellet",
+                    "email": "louis_ouellet@hotmail.com"
+                }
+            ],
+            "description": "SMS Library for the Laswitch Core Framework",
+            "support": {
+                "issues": "https://github.com/LaswitchTech/coreSMS/issues",
+                "source": "https://github.com/LaswitchTech/coreSMS/tree/v1.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/LaswitchTech",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-06-27T00:04:45+00:00"
+        },
+        {
+            "name": "laswitchtech/core-smtp",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaswitchTech/coreSMTP.git",
+                "reference": "ccae27ba8d4565bff0cd03221465cb5c591c54b8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LaswitchTech/coreSMTP/zipball/ccae27ba8d4565bff0cd03221465cb5c591c54b8",
+                "reference": "ccae27ba8d4565bff0cd03221465cb5c591c54b8",
+                "shasum": ""
+            },
+            "require": {
+                "laswitchtech/core-net": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LaswitchTech\\coreSMTP\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Louis Ouellet",
+                    "email": "louis_ouellet@hotmail.com"
+                }
+            ],
+            "description": "SMTP Library for the Laswitch Core Framework",
+            "support": {
+                "issues": "https://github.com/LaswitchTech/coreSMTP/issues",
+                "source": "https://github.com/LaswitchTech/coreSMTP/tree/v1.0.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/LaswitchTech",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-07-18T17:32:33+00:00"
         }
     ],
     "packages-dev": [],
