@@ -86,7 +86,7 @@ class User {
     private $ErrorReport;
 
     /**
-     * Create a new Session instance.
+     * Create a new User instance.
      *
      * @param  string  $Id
      * @param  string  $Identifier
