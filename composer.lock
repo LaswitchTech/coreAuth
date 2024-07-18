@@ -189,16 +189,16 @@
         },
         {
             "name": "laswitchtech/core-logger",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaswitchTech/coreLogger.git",
-                "reference": "cc77f55daf55ee27565d160819683c2e4673d48f"
+                "reference": "6201482b1004df75a707cc2223c22742896c445a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaswitchTech/coreLogger/zipball/cc77f55daf55ee27565d160819683c2e4673d48f",
-                "reference": "cc77f55daf55ee27565d160819683c2e4673d48f",
+                "url": "https://api.github.com/repos/LaswitchTech/coreLogger/zipball/6201482b1004df75a707cc2223c22742896c445a",
+                "reference": "6201482b1004df75a707cc2223c22742896c445a",
                 "shasum": ""
             },
             "require": {
@@ -223,7 +223,7 @@
             "description": "Logger Library for the Laswitch Core Framework",
             "support": {
                 "issues": "https://github.com/LaswitchTech/coreLogger/issues",
-                "source": "https://github.com/LaswitchTech/coreLogger/tree/v1.0.3"
+                "source": "https://github.com/LaswitchTech/coreLogger/tree/v1.0.4"
             },
             "funding": [
                 {
@@ -231,7 +231,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-06-26T23:58:30+00:00"
+            "time": "2024-07-18T17:54:55+00:00"
         },
         {
             "name": "laswitchtech/core-net",
