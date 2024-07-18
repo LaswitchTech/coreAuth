@@ -31,7 +31,7 @@ $CSRF = new CSRF();
   <body class="h-100 w-100">
     <div class="row h-100 w-100 m-0 p-0">
       <?php if($Auth->Authorization->isAuthorized()){ ?>
-        <div class="col-6 h-100 m-0 p-0" style="background-image: url('https://coredb.local/img/blue-network-flip.jpg');">
+        <div class="col h-100 m-0 p-0 d-none">
           <div class="container h-100 p-5">
             <div class="d-flex flex-column h-100 align-items-center justify-content-center text-light text-break p-5 rounded-5" style="background-color: rgba(0, 0, 0, 0.7)">
               <?php if(isset($_SESSION)){ ?>
@@ -50,7 +50,7 @@ $CSRF = new CSRF();
             </div>
           </div>
         </div>
-        <div class="col-6 h-100 m-0 p-0">
+        <div class="col h-100 m-0 p-0">
           <div class="container h-100">
             <div class="d-flex h-100 row align-items-center justify-content-center">
               <div class="col-7">
