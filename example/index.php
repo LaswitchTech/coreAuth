@@ -128,8 +128,8 @@ $CSRF = new CSRF();
                         <label for="2fa">2-Factor Authentication Code</label>
                       </div>
                       <input type="hidden" class="d-none" name="csrf" value="<?= $CSRF->token() ?>">
-                      <input type="hidden" name="username" class="d-none" value="<?= $_POST['username'] ?>">
-                      <input type="hidden" name="password" class="d-none" value="<?= $_POST['password'] ?>">
+                      <input type="hidden" name="username" autocomplete="username" class="d-none" value="<?= $_POST['username'] ?>">
+                      <input type="hidden" name="password" autocomplete="current-password" class="d-none" value="<?= $_POST['password'] ?>">
                       <?php if(isset($_POST['remember'])){ ?>
                         <input type="hidden" name="remember" class="d-none" value="<?= $_POST['remember'] ?>">
                       <?php } ?>
@@ -138,11 +138,11 @@ $CSRF = new CSRF();
                       </div>
                     <?php } else { ?>
                       <div class="form-floating my-3">
-                        <input type="text" name="username" class="form-control form-control-lg" placeholder="username@domain.com" id="username">
+                        <input type="text" name="username" autocomplete="username" class="form-control form-control-lg" placeholder="username@domain.com" id="username">
                         <label for="username">Username</label>
                       </div>
                       <div class="form-floating my-3">
-                        <input type="password" name="password" class="form-control form-control-lg" placeholder="*******************" id="password">
+                        <input type="password" name="password" autocomplete="current-password" class="form-control form-control-lg" placeholder="*******************" id="password">
                         <label for="password">Password</label>
                       </div>
                       <div class="form-check my-3 mb-5 form-switch">
