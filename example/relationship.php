@@ -148,7 +148,7 @@ if(isset($_POST) && !empty($_POST)){
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <title><?= $Header ?> Management</title>
-    <script src="/vendor/components/jquery/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   <body class="h-100 w-100">
@@ -248,7 +248,7 @@ if(isset($_POST) && !empty($_POST)){
                           <table class="table border table-striped table-hover">
                             <thead>
                               <tr class="text-bg-light">
-                                <th class="border" colspan="<?= count($Columns) ?>"><?= ucfirst($Table) ?></th>
+                                <th class="border" colspan="<?= count($Columns) +1 ?>"><?= ucfirst($Table) ?></th>
                               </tr>
                               <tr class="text-bg-light">
                                 <?php foreach($Columns as $Column => $DataType){ ?>
@@ -263,7 +263,7 @@ if(isset($_POST) && !empty($_POST)){
                                   <?php foreach($Record as $Column => $Value){ ?>
                                     <td class="border"><?= $Value ?></td>
                                   <?php } ?>
-                                  <td class="border position-sticky end-0 text-bg-light">
+                                  <td class="border position-sticky end-0">
                                     <input type="hidden" class="d-none" name="csrf" value="<?= $CSRF->token() ?>">
                                     <div class="btn-group border shadow">
                                       <a href="relationship.php?type=<?= $RecordTypes[$Table] ?>&id=<?= $Record[$Identifiers[$RecordTypes[$Table]]] ?>" class="btn btn-sm btn-primary">Details</a>

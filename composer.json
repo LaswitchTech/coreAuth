@@ -17,6 +17,9 @@
     "minimum-stability": "stable",
     "require": {
         "laswitchtech/core-database": "^1.0",
-        "laswitchtech/core-csrf": "^1.0"
+        "laswitchtech/core-csrf": "^1.0",
+        "laswitchtech/core-imap": "^1.0",
+        "laswitchtech/core-smtp": "^1.0",
+        "laswitchtech/core-sms": "^1.0"
     }
 }

@@ -25,13 +25,13 @@ $CSRF = new CSRF();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <title>Index</title>
-    <script src="/vendor/components/jquery/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   <body class="h-100 w-100">
     <div class="row h-100 w-100 m-0 p-0">
       <?php if($Auth->Authorization->isAuthorized()){ ?>
-        <div class="col-6 h-100 m-0 p-0" style="background-image: url('https://coredb.local/img/blue-network-flip.jpg');">
+        <div class="col h-100 m-0 p-0 d-none">
           <div class="container h-100 p-5">
             <div class="d-flex flex-column h-100 align-items-center justify-content-center text-light text-break p-5 rounded-5" style="background-color: rgba(0, 0, 0, 0.7)">
               <?php if(isset($_SESSION)){ ?>
@@ -50,7 +50,7 @@ $CSRF = new CSRF();
             </div>
           </div>
         </div>
-        <div class="col-6 h-100 m-0 p-0">
+        <div class="col h-100 m-0 p-0">
           <div class="container h-100">
             <div class="d-flex h-100 row align-items-center justify-content-center">
               <div class="col-7">
@@ -128,8 +128,8 @@ $CSRF = new CSRF();
                         <label for="2fa">2-Factor Authentication Code</label>
                       </div>
                       <input type="hidden" class="d-none" name="csrf" value="<?= $CSRF->token() ?>">
-                      <input type="hidden" name="username" class="d-none" value="<?= $_POST['username'] ?>">
-                      <input type="hidden" name="password" class="d-none" value="<?= $_POST['password'] ?>">
+                      <input type="hidden" name="username" autocomplete="username" class="d-none" value="<?= $_POST['username'] ?>">
+                      <input type="hidden" name="password" autocomplete="current-password" class="d-none" value="<?= $_POST['password'] ?>">
                       <?php if(isset($_POST['remember'])){ ?>
                         <input type="hidden" name="remember" class="d-none" value="<?= $_POST['remember'] ?>">
                       <?php } ?>
@@ -138,11 +138,11 @@ $CSRF = new CSRF();
                       </div>
                     <?php } else { ?>
                       <div class="form-floating my-3">
-                        <input type="text" name="username" class="form-control form-control-lg" placeholder="username@domain.com" id="username">
+                        <input type="text" name="username" autocomplete="username" class="form-control form-control-lg" placeholder="username@domain.com" id="username">
                         <label for="username">Username</label>
                       </div>
                       <div class="form-floating my-3">
-                        <input type="password" name="password" class="form-control form-control-lg" placeholder="*******************" id="password">
+                        <input type="password" name="password" autocomplete="current-password" class="form-control form-control-lg" placeholder="*******************" id="password">
                         <label for="password">Password</label>
                       </div>
                       <div class="form-check my-3 mb-5 form-switch">

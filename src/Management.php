@@ -65,7 +65,7 @@ class Management {
 		'permissions' => 'Permission',
 	];
     private $Name = null;
-    private $Namespace = "\\LaswitchTech\\phpAUTH\\Objects\\";
+    private $Namespace = "\\LaswitchTech\\coreAuth\\Objects\\";
 
     /**
      * Create a new Authentication instance.

@@ -71,7 +71,7 @@ $Header = ucfirst($Page);
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <title><?= $Header ?> Management</title>
-    <script src="/vendor/components/jquery/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   <body class="h-100 w-100">
@@ -131,7 +131,7 @@ $Header = ucfirst($Page);
                                   <?php } ?>
                                 </td>
                               <?php } ?>
-                              <td class="border position-sticky end-0 text-bg-light">
+                              <td class="border position-sticky end-0">
                                 <div class="btn-group border shadow">
                                   <a href="detail.php?type=<?= $Page ?>&id=<?= $Object->get($Identifiers[$Page]); ?>" class="btn btn-sm btn-primary">Details</a>
                                   <?php if($Page !== "permission"){ ?>

@@ -86,7 +86,7 @@ class User {
     private $ErrorReport;
 
     /**
-     * Create a new Session instance.
+     * Create a new User instance.
      *
      * @param  string  $Id
      * @param  string  $Identifier
@@ -124,7 +124,7 @@ class User {
         $this->Identifier = $Identifier;
 
         // Initiate Relationship
-        $this->Relationship = new Relationship($this->Logger, $this->Database);
+        $this->Relationship = new Relationship($this->Database);
 
         // Setup Columns
         $this->Columns = $this->Database->getColumns($this->Table);
@@ -480,14 +480,14 @@ class User {
             switch($Method){
                 case"smtp":
 
-                    // Initiate phpSMTP
+                    // Initiate SMTP
                     if(!$this->SMTP){
-                        $this->SMTP = new phpSMTP();
+                        $this->SMTP = new SMTP();
                     }
 
-                    // Check if phpSMTP is configured
+                    // Check if SMTP is configured
                     if(!$this->SMTP || !$this->SMTP->isConnected()){
-                        throw new Exception("Unable to initiate phpSMTP.");
+                        throw new Exception("Unable to initiate SMTP.");
                     }
 
                     // Add and Set default template
@@ -522,14 +522,14 @@ class User {
                     break;
                 case"sms":
 
-                    // Initiate phpSMS
+                    // Initiate SMS
                     if(!$this->SMS){
-                        $this->SMS = new phpSMS();
+                        $this->SMS = new SMS();
                     }
 
-                    // Check if phpSMS is configured
+                    // Check if SMS is configured
                     if(!$this->SMS || !$this->SMS->isReady()){
-                        throw new Exception("Unable to initiate phpSMS.");
+                        throw new Exception("Unable to initiate SMS.");
                     }
 
                     // Send Code
@@ -717,7 +717,7 @@ class User {
                     foreach($this->Classes as $Table => $Class){
                         if(isset($this->Relationships[$Table])){
                             foreach($this->Relationships[$Table] as $Id => $Record){
-                                $this->Relationships[$Table][$Id] = new $Class($Record[$this->Identifiers[$Table]], $this->Identifiers[$Table], $this->Logger, $this->Database);
+                                $this->Relationships[$Table][$Id] = new $Class($Record[$this->Identifiers[$Table]], $this->Identifiers[$Table], $this->Database);
                             }
                         }
                     }
@@ -1610,9 +1610,9 @@ class User {
                     break;
                 case"IMAP":
 
-                    // Check if phpIMAP was Initialized and Initialize it if it's not
+                    // Check if IMAP was Initialized and Initialize it if it's not
                     if(!$this->IMAP){
-                        $this->IMAP = new phpIMAP();
+                        $this->IMAP = new IMAP();
                     }
 
                     // Check if Database Server Information is available
@@ -1635,9 +1635,9 @@ class User {
                     break;
                 case"SMTP":
 
-                    // Check if phpSMTP was Initialized and Initialize it if it's not
+                    // Check if SMTP was Initialized and Initialize it if it's not
                     if(!$this->SMTP){
-                        $this->SMTP = new phpSMTP();
+                        $this->SMTP = new SMTP();
                     }
 
                     // Check if Database Server Information is available
@@ -1753,14 +1753,14 @@ class User {
             "verifiedHash" => null,
         ]);
 
-        // Initiate phpSMTP
+        // Initiate SMTP
         if(!$this->SMTP){
-            $this->SMTP = new phpSMTP();
+            $this->SMTP = new SMTP();
         }
 
-        // Check if phpSMTP is configured
+        // Check if SMTP is configured
         if(!$this->SMTP || !$this->SMTP->isConnected()){
-            throw new Exception("Unable to initiate phpSMTP.");
+            throw new Exception("Unable to initiate SMTP.");
         }
 
         // Add and Set default template
