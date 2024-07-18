@@ -89,7 +89,7 @@ class Role {
         $this->Name = $this->Id;
 
         // Initiate Relationship
-        $this->Relationship = new Relationship($Logger, $Database);
+        $this->Relationship = new Relationship($Database);
 
         // Setup Columns
         $this->Columns = $this->Database->getColumns($this->Table);
@@ -242,7 +242,7 @@ class Role {
                     foreach($this->Classes as $Table => $Class){
                         if(isset($this->Relationships[$Table])){
                             foreach($this->Relationships[$Table] as $Id => $Record){
-                                $this->Relationships[$Table][$Id] = new $Class($Record[$this->Identifiers[$Table]], $this->Identifiers[$Table], $this->Logger, $this->Database);
+                                $this->Relationships[$Table][$Id] = new $Class($Record[$this->Identifiers[$Table]], $this->Identifiers[$Table], $this->Database);
                             }
                         }
                     }

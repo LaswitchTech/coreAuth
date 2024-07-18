@@ -249,7 +249,7 @@ class Organization {
                     foreach($this->Classes as $Table => $Class){
                         if(isset($this->Relationships[$Table])){
                             foreach($this->Relationships[$Table] as $Id => $Record){
-                                $this->Relationships[$Table][$Id] = new $Class($Record[$this->Identifiers[$Table]], $this->Identifiers[$Table], $this->Logger, $this->Database);
+                                $this->Relationships[$Table][$Id] = new $Class($Record[$this->Identifiers[$Table]], $this->Identifiers[$Table], $this->Database);
                             }
                         }
                     }
@@ -819,7 +819,7 @@ class Organization {
                             $Class = $this->Classes[$Table];
 
                             // Create Object
-                            $Object = new $Class($Record[$this->Identifiers[$Table]], $this->Identifiers[$Table], $this->Logger, $this->Database);
+                            $Object = new $Class($Record[$this->Identifiers[$Table]], $this->Identifiers[$Table], $this->Database);
 
                             // Save Object
                             $Object->save($Fields);
@@ -894,7 +894,7 @@ class Organization {
                             $Class = $this->Classes[$Table];
 
                             // Create Object
-                            $Object = new $Class($Record[$this->Identifiers[$Table]], $this->Identifiers[$Table], $this->Logger, $this->Database);
+                            $Object = new $Class($Record[$this->Identifiers[$Table]], $this->Identifiers[$Table], $this->Database);
 
                             // Save Object
                             $Object->save($Fields);
@@ -960,7 +960,7 @@ class Organization {
             foreach($Records as $Id => $Record){
                 if($Table === 'users'){
                 $Class = $this->Classes['users'];
-                $Object = new $Class($Record[$this->Identifiers[$Table]], $this->Identifiers[$Table], $this->Logger, $this->Database);
+                $Object = new $Class($Record[$this->Identifiers[$Table]], $this->Identifiers[$Table], $this->Database);
                 $Object->delete();
                 }
             }

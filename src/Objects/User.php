@@ -124,7 +124,7 @@ class User {
         $this->Identifier = $Identifier;
 
         // Initiate Relationship
-        $this->Relationship = new Relationship($this->Logger, $this->Database);
+        $this->Relationship = new Relationship($this->Database);
 
         // Setup Columns
         $this->Columns = $this->Database->getColumns($this->Table);
@@ -717,7 +717,7 @@ class User {
                     foreach($this->Classes as $Table => $Class){
                         if(isset($this->Relationships[$Table])){
                             foreach($this->Relationships[$Table] as $Id => $Record){
-                                $this->Relationships[$Table][$Id] = new $Class($Record[$this->Identifiers[$Table]], $this->Identifiers[$Table], $this->Logger, $this->Database);
+                                $this->Relationships[$Table][$Id] = new $Class($Record[$this->Identifiers[$Table]], $this->Identifiers[$Table], $this->Database);
                             }
                         }
                     }
