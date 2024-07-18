@@ -4,17 +4,17 @@ session_start();
 
 // Import Auth class into the global namespace
 // These must be at the top of your script, not inside a function
-use LaswitchTech\phpAUTH\phpAUTH;
-use LaswitchTech\phpCSRF\phpCSRF;
+use LaswitchTech\coreAuth\Auth;
+use LaswitchTech\coreCSRF\CSRF;
 
 // Load Composer's autoloader
 require 'vendor/autoload.php';
 
-// Initiate phpAUTH
-$phpAUTH = new phpAUTH();
+// Initiate Auth
+$Auth = new Auth();
 
-// Initiate phpCSRF
-$phpCSRF = new phpCSRF();
+// Initiate CSRF
+$CSRF = new CSRF();
 
 //Render
 ?>
@@ -30,7 +30,7 @@ $phpCSRF = new phpCSRF();
   </head>
   <body class="h-100 w-100">
     <div class="row h-100 w-100 m-0 p-0">
-      <?php if($phpAUTH->Authorization->isAuthorized()){ ?>
+      <?php if($Auth->Authorization->isAuthorized()){ ?>
         <div class="col-6 h-100 m-0 p-0" style="background-image: url('https://coredb.local/img/blue-network-flip.jpg');">
           <div class="container h-100 p-5">
             <div class="d-flex flex-column h-100 align-items-center justify-content-center text-light text-break p-5 rounded-5" style="background-color: rgba(0, 0, 0, 0.7)">
@@ -54,13 +54,13 @@ $phpCSRF = new phpCSRF();
           <div class="container h-100">
             <div class="d-flex h-100 row align-items-center justify-content-center">
               <div class="col-7">
-                <?php if($phpAUTH->Authentication->isAuthenticated()){ ?>
-                  <?php if(!$phpAUTH->Authentication->isVerified()){ ?>
+                <?php if($Auth->Authentication->isAuthenticated()){ ?>
+                  <?php if(!$Auth->Authentication->isVerified()){ ?>
                     <h3 class="mb-4">Account <strong>Verification</strong></h3>
-                    <?php if($phpAUTH->Authentication->error()){ ?>
+                    <?php if($Auth->Authentication->error()){ ?>
                       <div class="card text-bg-info mb-4">
                         <div class="card-body">
-                          <p class="m-0"><?= $phpAUTH->Authentication->error() ?></p>
+                          <p class="m-0"><?= $Auth->Authentication->error() ?></p>
                         </div>
                       </div>
                     <?php } ?>
@@ -69,30 +69,30 @@ $phpCSRF = new phpCSRF();
                         <input type="text" name="verifiedCode" class="form-control form-control-lg" placeholder="Verification Code" id="2fa">
                         <label for="verifiedCode">Verification Code</label>
                       </div>
-                      <input type="hidden" class="d-none" name="csrf" value="<?= $phpCSRF->token() ?>">
+                      <input type="hidden" class="d-none" name="csrf" value="<?= $CSRF->token() ?>">
                       <div class="btn-group w-100 border shadow">
                         <button type="submit" name="login" class="btn btn-block btn-primary">Verify</button>
                       </div>
                     </form>
                   <?php } else { ?>
-                    <h3>Logged in to <strong>phpAUTH</strong></h3>
+                    <h3>Logged in to <strong>Auth</strong></h3>
                     <p class="mb-4">
-                      <p>User: <?= $phpAUTH->Authentication->User->get('username') ?></p>
+                      <p>User: <?= $Auth->Authentication->User->get('username') ?></p>
                     </p>
                     <div class="btn-group w-100 border shadow">
                       <a href="/" class="btn btn-block btn-light">Refresh</a>
                       <a href="manage.php?type=user" class="btn btn-block btn-primary">Management</a>
                       <a href="install.php" class="btn btn-block btn-warning">Re-Install</a>
-                      <a href="?logout&csrf=<?= $phpCSRF->token() ?>" class="btn btn-block btn-primary">Log Out</a>
+                      <a href="?logout&csrf=<?= $CSRF->token() ?>" class="btn btn-block btn-primary">Log Out</a>
                     </div>
                   <?php } ?>
                 <?php } else { ?>
-                  <h3 class="mb-4">Login to <strong>phpAUTH</strong></h3>
-                  <?php if($phpAUTH->Authentication->status() > 0 && $phpAUTH->Authentication->status() < 6){ ?>
+                  <h3 class="mb-4">Login to <strong>Auth</strong></h3>
+                  <?php if($Auth->Authentication->status() > 0 && $Auth->Authentication->status() < 6){ ?>
                     <div class="card text-bg-danger mb-4">
                       <div class="card-body">
                         <?php
-                          switch($phpAUTH->Authentication->status()){
+                          switch($Auth->Authentication->status()){
                     				case 1:
                     					echo "<p class='m-0'>Your account has been deleted!</p>";
                     					break;
@@ -114,20 +114,20 @@ $phpCSRF = new phpCSRF();
                       </div>
                     </div>
                   <?php } ?>
-                  <?php if($phpAUTH->Authentication->error()){ ?>
+                  <?php if($Auth->Authentication->error()){ ?>
                     <div class="card text-bg-info mb-4">
                       <div class="card-body">
-                        <p class="m-0"><?= $phpAUTH->Authentication->error() ?></p>
+                        <p class="m-0"><?= $Auth->Authentication->error() ?></p>
                       </div>
                     </div>
                   <?php } ?>
                   <form method="post">
-                    <?php if($phpAUTH->Authentication->is2FAReady()){ ?>
+                    <?php if($Auth->Authentication->is2FAReady()){ ?>
                       <div class="form-floating my-3">
                         <input type="text" name="2fa" class="form-control form-control-lg" placeholder="2-Factor Authentication Code" id="2fa">
                         <label for="2fa">2-Factor Authentication Code</label>
                       </div>
-                      <input type="hidden" class="d-none" name="csrf" value="<?= $phpCSRF->token() ?>">
+                      <input type="hidden" class="d-none" name="csrf" value="<?= $CSRF->token() ?>">
                       <input type="hidden" name="username" class="d-none" value="<?= $_POST['username'] ?>">
                       <input type="hidden" name="password" class="d-none" value="<?= $_POST['password'] ?>">
                       <?php if(isset($_POST['remember'])){ ?>
@@ -149,7 +149,7 @@ $phpCSRF = new phpCSRF();
                         <input class="form-check-input" style="margin-left: -1.4em; margin-right: 1.4em;transform: scale(1.8);" type="checkbox" role="switch" name="remember" id="remember">
                         <label class="form-check-label" for="remember">Remember me</label>
                       </div>
-                      <input type="hidden" class="d-none" name="csrf" value="<?= $phpCSRF->token() ?>">
+                      <input type="hidden" class="d-none" name="csrf" value="<?= $CSRF->token() ?>">
                       <div class="btn-group w-100 border shadow">
                         <a href="install.php" class="btn btn-block btn-light">Install</a>
                         <button type="submit" name="login" class="btn btn-block btn-primary">Log In</button>
@@ -173,6 +173,6 @@ $phpCSRF = new phpCSRF();
         </div>
       <?php } ?>
     </div>
-    <?= $phpAUTH->Compliance->form() ?>
+    <?= $Auth->Compliance->form() ?>
   </body>
 </html>

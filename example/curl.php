@@ -2,19 +2,19 @@
 <?php
 
 // These must be at the top of your script, not inside a function
-use LaswitchTech\phpConfigurator\phpConfigurator;
+use LaswitchTech\coreConfigurator\Configurator;
 
 // Load Composer's autoloader
 require 'vendor/autoload.php';
 
-// Initiate phpConfigurator
-$Configurator = new phpConfigurator('auth');
+// Initiate Configurator
+$Configurator = new Configurator('auth');
 
 // Configure Auth to only use Basic and Bearer Authentication
 $Configurator->set('auth','basic',true)->set('auth','bearer',true)->set('auth','request',false)->set('auth','cookie',false)->set('auth','session',false);
 
-// Initiate phpConfigurator
-$AccountConfigurator = new phpConfigurator('account');
+// Initiate Configurator
+$AccountConfigurator = new Configurator('account');
 
 // cURL Options
 $url = $AccountConfigurator->get('account','url');
