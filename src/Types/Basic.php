@@ -36,7 +36,7 @@ class Basic {
 
         // Initiate Database
         $this->Database = $Database;
-        if(!$this->Database){
+        if($this->Database === null){
             $this->Database = new Database();
         }
     }
