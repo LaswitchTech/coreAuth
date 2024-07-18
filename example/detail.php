@@ -4,21 +4,21 @@ session_start();
 
 // Import Auth class into the global namespace
 // These must be at the top of your script, not inside a function
-use LaswitchTech\phpAUTH\phpAUTH;
-use LaswitchTech\phpCSRF\phpCSRF;
-use LaswitchTech\phpDB\Database;
+use LaswitchTech\coreAuth\Auth;
+use LaswitchTech\coreCSRF\CSRF;
+use LaswitchTech\coreDatabase\Database;
 
 // Load Composer's autoloader
 require 'vendor/autoload.php';
 
-// Initiate phpAUTH
-$phpAUTH = new phpAUTH();
+// Initiate Auth
+$Auth = new Auth();
 
-// Initiate phpDB
-$phpDB = new Database();
+// Initiate Database
+$Database = new Database();
 
-// Initiate phpCSRF
-$phpCSRF = new phpCSRF();
+// Initiate CSRF
+$CSRF = new CSRF();
 
 // Initialize Types
 $Types = ['user','organization','group','role','permission'];
@@ -49,25 +49,25 @@ if(!isset($_GET['id'])){
 $Id = $_GET['id'];
 
 // Create Manager
-$Manager = $phpAUTH->manage("{$Page}s");
+$Manager = $Auth->manage("{$Page}s");
 
 // Retrieve Objects
 $Object = $Manager->read($Id);
 
 // Retrieve Columns
-$Columns = $phpDB->getColumns("{$Page}s");
+$Columns = $Database->getColumns("{$Page}s");
 
 // Retrieve Required Columns
-$Required = $phpDB->getRequired("{$Page}s");
+$Required = $Database->getRequired("{$Page}s");
 
 // Retrieve Defaults
-$Defaults = $phpDB->getDefaults("{$Page}s");
+$Defaults = $Database->getDefaults("{$Page}s");
 
 // Retrieve OnUpdate
-$OnUpdate = $phpDB->getOnUpdate("{$Page}s");
+$OnUpdate = $Database->getOnUpdate("{$Page}s");
 
 // Retrieve Primary
-$Primary = $phpDB->getPrimary("{$Page}s");
+$Primary = $Database->getPrimary("{$Page}s");
 
 // Header
 $Header = ucfirst($Page);
@@ -86,13 +86,13 @@ $Header = ucfirst($Page);
   </head>
   <body class="h-100 w-100">
     <div class="row h-100 w-100 m-0 p-0">
-      <?php if($phpAUTH->Authorization->isAuthorized()){ ?>
+      <?php if($Auth->Authorization->isAuthorized()){ ?>
         <div class="col h-100 m-0 p-0">
           <div class="container h-100">
             <div class="d-flex h-100 row align-items-center justify-content-center">
               <div class="col">
                 <h3 class="mt-5 mb-3">Details of <strong><?= $Header ?></strong> <small>(<?= $Object->get($Identifiers[$Page]); ?>)</small></h3>
-                <?php if($phpAUTH->Authentication->isAuthenticated()){ ?>
+                <?php if($Auth->Authentication->isAuthenticated()){ ?>
                   <div class="btn-group w-100 border shadow mb-4">
                     <a href="manage.php?type=<?= $Page ?>" class="btn btn-block btn-light">Return</a>
                     <a href="create.php?type=<?= $Page ?>" class="btn btn-block btn-success">Create</a>
@@ -142,6 +142,6 @@ $Header = ucfirst($Page);
         </div>
       <?php } ?>
     </div>
-    <?= $phpAUTH->Compliance->form() ?>
+    <?= $Auth->Compliance->form() ?>
   </body>
 </html>

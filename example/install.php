@@ -3,8 +3,8 @@
 session_start();
 
 // These must be at the top of your script, not inside a function
-use LaswitchTech\phpAUTH\phpAUTH;
-use LaswitchTech\phpConfigurator\phpConfigurator;
+use LaswitchTech\coreAuth\Auth;
+use LaswitchTech\coreConfigurator\Configurator;
 
 // Load Composer's autoloader
 require 'vendor/autoload.php';
@@ -18,11 +18,11 @@ if(isset($_SERVER['HTTP_HOST']) && !in_array($_SERVER['HTTP_HOST'],$Hostnames)){
   $Hostnames[] = $_SERVER['HTTP_HOST'];
 }
 
-// Initiate phpAUTH
-$phpAUTH = new phpAUTH();
+// Initiate Auth
+$Auth = new Auth();
 
-// Configure phpAUTH
-$phpAUTH->config("hostnames",$Hostnames)
+// Configure Auth
+$Auth->config("hostnames",$Hostnames)
         ->config("basic",false)
         ->config("bearer",false)
         ->config("request",true)
@@ -38,11 +38,11 @@ $phpAUTH->config("hostnames",$Hostnames)
         ->config("windowVerification",2592000) // 30 Days
         ->init();
 
-// Initiate phpConfigurator
-$AccountsConfigurator = new phpConfigurator('accounts');
+// Initiate Configurator
+$AccountsConfigurator = new Configurator('accounts');
 
-// Install phpAUTH
-$Installer = $phpAUTH->install();
+// Install Auth
+$Installer = $Auth->install();
 
 // Create a User
 $User = $Installer->create("user",["username" => $AccountsConfigurator->get('accounts','username')]);
@@ -56,11 +56,11 @@ $API = $Installer->create("api",["username" => $AccountsConfigurator->get('accou
 // Activate API
 $API->activate();
 
-// Initiate phpConfigurator
-$AccountConfigurator = new phpConfigurator('account');
+// Initiate Configurator
+$AccountConfigurator = new Configurator('account');
 
 // Save Account for Testing
-$AccountConfigurator->set('account','url',"https://phpauth.local/api.php")
+$AccountConfigurator->set('account','url',"https://Auth.local/api.php")
                     ->set('account','username',$User->get('username'))
                     ->set('account','password',$User->getPassword())
                     ->set('account','token',$API->get('username').":".$API->getToken());

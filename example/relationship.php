@@ -4,21 +4,21 @@ session_start();
 
 // Import Auth class into the global namespace
 // These must be at the top of your script, not inside a function
-use LaswitchTech\phpAUTH\phpAUTH;
-use LaswitchTech\phpCSRF\phpCSRF;
-use LaswitchTech\phpDB\Database;
+use LaswitchTech\coreAuth\Auth;
+use LaswitchTech\coreCSRF\CSRF;
+use LaswitchTech\coreDatabase\Database;
 
 // Load Composer's autoloader
 require 'vendor/autoload.php';
 
-// Initiate phpAUTH
-$phpAUTH = new phpAUTH();
+// Initiate Auth
+$Auth = new Auth();
 
-// Initiate phpDB
-$phpDB = new Database();
+// Initiate Database
+$Database = new Database();
 
-// Initiate phpCSRF
-$phpCSRF = new phpCSRF();
+// Initiate CSRF
+$CSRF = new CSRF();
 
 // Initialize Types
 $Types = ['user','organization','group','role','permission'];
@@ -51,25 +51,25 @@ $RecordTypes = [
 ];
 
 // Create Sub-Manager
-$UserManager = $phpAUTH->manage("users");
+$UserManager = $Auth->manage("users");
 
 // Retrieve Users
 $Users = $UserManager->read();
 
 // Create Sub-Manager
-$OrganizationManager = $phpAUTH->manage("organizations");
+$OrganizationManager = $Auth->manage("organizations");
 
 // Retrieve Users
 $Organizations = $OrganizationManager->read();
 
 // Create Sub-Manager
-$GroupManager = $phpAUTH->manage("groups");
+$GroupManager = $Auth->manage("groups");
 
 // Retrieve Users
 $Groups = $GroupManager->read();
 
 // Create Sub-Manager
-$RoleManager = $phpAUTH->manage("roles");
+$RoleManager = $Auth->manage("roles");
 
 // Retrieve Users
 $Roles = $RoleManager->read();
@@ -91,32 +91,32 @@ if(!isset($_GET['id'])){
 $Id = $_GET['id'];
 
 // Create Manager
-$Manager = $phpAUTH->manage("{$Page}s");
+$Manager = $Auth->manage("{$Page}s");
 
 // Retrieve Objects
 $Object = $Manager->read($Id);
 
 // Retrieve Columns
-$Columns = $phpDB->getColumns("{$Page}s");
+$Columns = $Database->getColumns("{$Page}s");
 
 // Retrieve Required Columns
-$Required = $phpDB->getRequired("{$Page}s");
+$Required = $Database->getRequired("{$Page}s");
 
 // Retrieve Defaults
-$Defaults = $phpDB->getDefaults("{$Page}s");
+$Defaults = $Database->getDefaults("{$Page}s");
 
 // Retrieve OnUpdate
-$OnUpdate = $phpDB->getOnUpdate("{$Page}s");
+$OnUpdate = $Database->getOnUpdate("{$Page}s");
 
 // Retrieve Primary
-$Primary = $phpDB->getPrimary("{$Page}s");
+$Primary = $Database->getPrimary("{$Page}s");
 
 // Header
 $Header = ucfirst($Page);
 
 // Handle Forms
 if(isset($_POST) && !empty($_POST)){
-  if($phpCSRF->validate()){
+  if($CSRF->validate()){
 
     // Handle Link Form
     if(isset($_POST['type'],$_POST[$_POST['type']])){
@@ -153,13 +153,13 @@ if(isset($_POST) && !empty($_POST)){
   </head>
   <body class="h-100 w-100">
     <div class="row h-100 w-100 m-0 p-0">
-      <?php if($phpAUTH->Authorization->isAuthorized()){ ?>
+      <?php if($Auth->Authorization->isAuthorized()){ ?>
         <div class="col h-100 m-0 p-0">
           <div class="container h-100">
             <div class="d-flex h-100 row align-items-center justify-content-center">
               <div class="col">
                 <h3 class="mt-5 mb-3">Relationships of <strong><?= $Header ?></strong> <small>(<?= $Object->get($Identifiers[$Page]); ?>)</small></h3>
-                <?php if($phpAUTH->Authentication->isAuthenticated()){ ?>
+                <?php if($Auth->Authentication->isAuthenticated()){ ?>
                   <div class="btn-group w-100 border shadow mb-4">
                     <a href="manage.php?type=<?= $Page ?>" class="btn btn-block btn-light">Return</a>
                     <a href="create.php?type=<?= $Page ?>" class="btn btn-block btn-success">Create</a>
@@ -233,7 +233,7 @@ if(isset($_POST) && !empty($_POST)){
                             </div>
                           </div>
                         </div>
-                        <input type="hidden" class="d-none" name="csrf" value="<?= $phpCSRF->token() ?>">
+                        <input type="hidden" class="d-none" name="csrf" value="<?= $CSRF->token() ?>">
                         <div class="btn-group w-100 border shadow mt-4 mb-4">
                           <button type="submit" class="btn btn-block btn-primary">Link</button>
                         </div>
@@ -242,7 +242,7 @@ if(isset($_POST) && !empty($_POST)){
                   </p>
                   <p class="mb-3">
                     <?php foreach($Object->get('relationships') as $Table => $Records){ ?>
-                      <?php $Columns = $phpDB->getColumns($Table); ?>
+                      <?php $Columns = $Database->getColumns($Table); ?>
                       <div class="overflow-auto my-2">
                         <form method="post">
                           <table class="table border table-striped table-hover">
@@ -264,7 +264,7 @@ if(isset($_POST) && !empty($_POST)){
                                     <td class="border"><?= $Value ?></td>
                                   <?php } ?>
                                   <td class="border position-sticky end-0 text-bg-light">
-                                    <input type="hidden" class="d-none" name="csrf" value="<?= $phpCSRF->token() ?>">
+                                    <input type="hidden" class="d-none" name="csrf" value="<?= $CSRF->token() ?>">
                                     <div class="btn-group border shadow">
                                       <a href="relationship.php?type=<?= $RecordTypes[$Table] ?>&id=<?= $Record[$Identifiers[$RecordTypes[$Table]]] ?>" class="btn btn-sm btn-primary">Details</a>
                                       <button type="submit" name="unlink" value="<?= $Table ?>:<?= $Record['id'] ?>" class="btn btn-sm btn-danger">Unlink</button>
@@ -300,7 +300,7 @@ if(isset($_POST) && !empty($_POST)){
         </div>
       <?php } ?>
     </div>
-    <?= $phpAUTH->Compliance->form() ?>
+    <?= $Auth->Compliance->form() ?>
     <script>
       $('#selectType').change(function(){
         const Select = $(this)

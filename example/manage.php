@@ -4,21 +4,21 @@ session_start();
 
 // Import Auth class into the global namespace
 // These must be at the top of your script, not inside a function
-use LaswitchTech\phpAUTH\phpAUTH;
-use LaswitchTech\phpCSRF\phpCSRF;
-use LaswitchTech\phpDB\Database;
+use LaswitchTech\coreAuth\Auth;
+use LaswitchTech\coreCSRF\CSRF;
+use LaswitchTech\coreDatabase\Database;
 
 // Load Composer's autoloader
 require 'vendor/autoload.php';
 
-// Initiate phpAUTH
-$phpAUTH = new phpAUTH();
+// Initiate Auth
+$Auth = new Auth();
 
-// Initiate phpDB
-$phpDB = new Database();
+// Initiate Database
+$Database = new Database();
 
-// Initiate phpCSRF
-$phpCSRF = new phpCSRF();
+// Initiate CSRF
+$CSRF = new CSRF();
 
 // Initialize Types
 $Types = ['user','organization','group','role','permission'];
@@ -51,13 +51,13 @@ if(!isset($_GET['type']) || !in_array($_GET['type'],$Types)){
 $Page = $_GET['type'];
 
 // Create Manager
-$Manager = $phpAUTH->manage("{$Page}s");
+$Manager = $Auth->manage("{$Page}s");
 
 // Retrieve Objects
 $Objects = $Manager->read();
 
 // Retrieve Columns
-$Columns = $phpDB->getColumns("{$Page}s");
+$Columns = $Database->getColumns("{$Page}s");
 
 // Header
 $Header = ucfirst($Page);
@@ -76,13 +76,13 @@ $Header = ucfirst($Page);
   </head>
   <body class="h-100 w-100">
     <div class="row h-100 w-100 m-0 p-0">
-      <?php if($phpAUTH->Authorization->isAuthorized()){ ?>
+      <?php if($Auth->Authorization->isAuthorized()){ ?>
         <div class="col h-100 m-0 p-0">
           <div class="container h-100">
             <div class="d-flex h-100 row align-items-center justify-content-center">
               <div class="col">
                 <h3 class="mt-5 mb-3"><?= $Header ?> <strong>Management</strong> <small>(<?= count($Objects); ?>)</small></h3>
-                <?php if($phpAUTH->Authentication->isAuthenticated()){ ?>
+                <?php if($Auth->Authentication->isAuthenticated()){ ?>
                   <div class="btn-group w-100 border shadow mb-4">
                     <a href="/" class="btn btn-block btn-light">Index</a>
                     <?php foreach($Types as $Type){ ?>
@@ -121,7 +121,7 @@ $Header = ucfirst($Page);
                               <?php if($Page === "permission"){ ?>
                                 <td class="border">
                                   <?php foreach($Levels as $Level => $Name){ ?>
-                                    <?php if($Level > 0 && $phpAUTH->Authorization->hasPermission($Object->get('name'), $Level)){ ?>
+                                    <?php if($Level > 0 && $Auth->Authorization->hasPermission($Object->get('name'), $Level)){ ?>
                                       <span class="badge rounded-pill mx-1 text-bg-<?= $Colors[$Name] ?>"><?= $Name ?></span>
                                     <?php } else { ?>
                                       <?php if($Level <= 0){ ?>
@@ -171,6 +171,6 @@ $Header = ucfirst($Page);
         </div>
       <?php } ?>
     </div>
-    <?= $phpAUTH->Compliance->form() ?>
+    <?= $Auth->Compliance->form() ?>
   </body>
 </html>
