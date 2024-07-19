@@ -7,7 +7,7 @@
 ![Version](https://img.shields.io/github/v/release/LaswitchTech/coreAuth?label=Version&style=for-the-badge)
 
 ## Description
-The `coreAuth` package is a library that provides IMAP utilities for the Laswitch Core Framework. The classes in this package are used by the other packages in the framework to provide SMS utilities for the framework.
+The `coreAuth` package is a library that provides a set of tools to help you build applications with user authentication in PHP.
 
 ## License
 This software is distributed under the [MIT](LICENSE) license.
@@ -21,7 +21,7 @@ Please disclose any vulnerabilities found responsibly – report security issues
 ## Installation
 Using Composer:
 ```sh
-composer require laswitchtech/core-Auth
+composer require laswitchtech/core-auth
 ```
 
 ## How do I use it?
