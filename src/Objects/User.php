@@ -47,17 +47,27 @@ class User {
     private $Relationships = [];
     private $Object;
     private $Classes = [
+        'user' => '\\LaswitchTech\\coreAuth\\Objects\\User',
         'users' => '\\LaswitchTech\\coreAuth\\Objects\\User',
+        'organization' => '\\LaswitchTech\\coreAuth\\Objects\\Organization',
         'organizations' => '\\LaswitchTech\\coreAuth\\Objects\\Organization',
+        'group' => '\\LaswitchTech\\coreAuth\\Objects\\Group',
         'groups' => '\\LaswitchTech\\coreAuth\\Objects\\Group',
+        'role' => '\\LaswitchTech\\coreAuth\\Objects\\Role',
         'roles' => '\\LaswitchTech\\coreAuth\\Objects\\Role',
+        'permission' => '\\LaswitchTech\\coreAuth\\Objects\\Permission',
         'permissions' => '\\LaswitchTech\\coreAuth\\Objects\\Permission',
     ];
     private $Identifiers = [
+        'user' => 'username',
         'users' => 'username',
+        'organization' => 'id',
         'organizations' => 'id',
+        'group' => 'name',
         'groups' => 'name',
+        'role' => 'name',
         'roles' => 'name',
+        'permission' => 'name',
         'permissions' => 'name',
     ];
     private $ContactInfo = [
