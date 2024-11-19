@@ -34,6 +34,7 @@ class Auth {
 
 	// Auth Objects
 	public $User;
+	public $Organization;
 
 	// Auth Switches
 	private $Override = false;
@@ -154,7 +155,16 @@ class Auth {
 			// Initialize Authentication
 			$this->Authentication = new Authentication($this->Database);
 			if($this->Authentication){
+
+                // Store User
 				$this->User = $this->Authentication->User;
+
+                // Check if the user is authenticated
+                if($this->Authentication->isAuthenticated()){
+
+                    // Retrieve and Set the User's Organization
+                    $this->Organization = $this->User->get('organization',true);
+                }
 			}
 
 			// Initialize Authorization

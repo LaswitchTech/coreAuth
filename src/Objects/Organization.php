@@ -39,17 +39,27 @@ class Organization {
     private $Relationships = [];
     private $Object;
     private $Classes = [
+        'user' => '\\LaswitchTech\\coreAuth\\Objects\\User',
         'users' => '\\LaswitchTech\\coreAuth\\Objects\\User',
+        'organization' => '\\LaswitchTech\\coreAuth\\Objects\\Organization',
         'organizations' => '\\LaswitchTech\\coreAuth\\Objects\\Organization',
+        'group' => '\\LaswitchTech\\coreAuth\\Objects\\Group',
         'groups' => '\\LaswitchTech\\coreAuth\\Objects\\Group',
+        'role' => '\\LaswitchTech\\coreAuth\\Objects\\Role',
         'roles' => '\\LaswitchTech\\coreAuth\\Objects\\Role',
+        'permission' => '\\LaswitchTech\\coreAuth\\Objects\\Permission',
         'permissions' => '\\LaswitchTech\\coreAuth\\Objects\\Permission',
     ];
     private $Identifiers = [
+        'user' => 'username',
         'users' => 'username',
+        'organization' => 'id',
         'organizations' => 'id',
+        'group' => 'name',
         'groups' => 'name',
+        'role' => 'name',
         'roles' => 'name',
+        'permission' => 'name',
         'permissions' => 'name',
     ];
     private $ContactInfo = [
@@ -288,7 +298,7 @@ class Organization {
                     $Class = $this->Classes[$Key];
 
                     // Create the Objects
-                    $Array[$Object] = new $Class($Object, $this->Identifiers[$Key], $this->Logger, $this->Database);
+                    $Array[$Object] = new $Class($Object, $this->Identifiers[$Key], $this->Database);
                 }
 
                 // Return the data point requested as objects
@@ -748,7 +758,7 @@ class Organization {
                             $Class = $this->Classes['users'];
 
                             // Create Object
-                            $Object = new $Class($User[$this->Identifiers['users']], $this->Identifiers['users'], $this->Logger, $this->Database);
+                            $Object = new $Class($User[$this->Identifiers['users']], $this->Identifiers['users'], $this->Database);
 
                             // Save Object
                             $Object->save($Fields);
