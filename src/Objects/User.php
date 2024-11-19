@@ -795,7 +795,7 @@ class User {
             // Save Error
             $this->ErrorReport = $e->getMessage();
 
-                    // If an exception is caught, log an error message
+            // If an exception is caught, log an error message
             $this->Logger->error('Error: '.$e->getMessage());
             return null;
         }
