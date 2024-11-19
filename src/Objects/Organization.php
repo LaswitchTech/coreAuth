@@ -298,7 +298,7 @@ class Organization {
                     $Class = $this->Classes[$Key];
 
                     // Create the Objects
-                    $Array[$Object] = new $Class($Object, $this->Identifiers[$Key], $this->Logger, $this->Database);
+                    $Array[$Object] = new $Class($Object, $this->Identifiers[$Key], $this->Database);
                 }
 
                 // Return the data point requested as objects
@@ -758,7 +758,7 @@ class Organization {
                             $Class = $this->Classes['users'];
 
                             // Create Object
-                            $Object = new $Class($User[$this->Identifiers['users']], $this->Identifiers['users'], $this->Logger, $this->Database);
+                            $Object = new $Class($User[$this->Identifiers['users']], $this->Identifiers['users'], $this->Database);
 
                             // Save Object
                             $Object->save($Fields);

@@ -291,7 +291,7 @@ class Group {
                     $Class = $this->Classes[$Key];
 
                     // Create the Objects
-                    $Array[$Object] = new $Class($Object, $this->Identifiers[$Key], $this->Logger, $this->Database);
+                    $Array[$Object] = new $Class($Object, $this->Identifiers[$Key], $this->Database);
                 }
 
                 // Return the data point requested as objects
