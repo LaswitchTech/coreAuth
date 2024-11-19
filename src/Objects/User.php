@@ -762,16 +762,30 @@ class User {
                 // Iterate through each objects
                 foreach($this->Object[$Key] as $Object){
 
-                    // Get Class name
-                    $Class = $this->Classes[$Key];
+                    // Check if the Class exists
+                    if(array_key_exists($Key,$this->Classes)){
 
-                    // Create the Objects
-                    $Array[$Object] = new $Class($Object, $this->Identifiers[$Key], $this->Logger, $this->Database);
+                        // Get Class name
+                        $Class = $this->Classes[$Key];
+
+                        // Create the Objects
+                        $Array[$Object] = new $Class($Object, $this->Identifiers[$Key], $this->Database);
+                    }
                 }
 
                 // Return the data point requested as objects
                 return $Array;
             } else {
+
+                // Check if the key requested is to be converted as an object
+                if($asObject && array_key_exists($Key,$this->Object) && array_key_exists($Key,$this->Classes)){
+
+                    // Get Class name
+                    $Class = $this->Classes[$Key];
+
+                    // Create the Objects
+                    return new $Class($this->Object[$Key], $this->Identifiers[$Key], $this->Database);
+                }
 
                 // Return the data point requested
                 return $this->Object[$Key];
